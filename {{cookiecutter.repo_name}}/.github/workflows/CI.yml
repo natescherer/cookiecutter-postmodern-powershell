@@ -1,0 +1,41 @@
+name: CI
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+    branches-ignore:
+      - main
+  pull_request:
+jobs:
+  Test:
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.url != github.event.pull_request.base.repo.url
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: ${{ matrix.shell }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        shell: [pwsh, powershell]
+        exclude:
+          - os: ubuntu-latest
+            shell: powershell
+          - os: macos-latest
+            shell: powershell
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run Pester Tests
+        uses: natescherer/pester-tester-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          shell: ${{ matrix.shell }}
+          tests_fail_step: true
+          report_name: TestResults_${{ runner.os }}_${{ matrix.shell }}
+          coverage_paths: src\private,src\public
+          coverage_report_name: CoverageResults_${{ runner.os }}_${{ matrix.shell }}
+      - name: Upload to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: true

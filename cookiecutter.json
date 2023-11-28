@@ -1,0 +1,22 @@
+{
+    "full_name": "",
+    "company": "{{cookiecutter.full_name}}",
+    "github_username": "",
+    "repo_name": "",
+    "module_name": "",
+    "short_description": "",
+    "initial_version": "1.0.0",
+    "minimum_pwsh_version": "5.1",
+    "_extensions": ["jinja2_time.TimeExtension"],
+    "_new_lines": "\n",
+    "__prompts__": {
+        "full_name": "Author's full name",
+        "company": "Author's company (or full_name again if no company)",
+        "github_username": "GitHub username or organization",
+        "repo_name": "Name of the repository that's been created and cloned from GitHub",
+        "module_name": "CamelCase name for your PowerShell module. Make sure it's available on powershellgallery.com!",
+        "short_description": "A one-sentence description of module",
+        "initial_version": "The initial version of the module that will be released when the first production release is made",
+        "minimum_pwsh_version": "Should be 5.1 if you want to support Windows PowerShell. Otherwise, should be set to the lowest currently supported version: https://endoflife.date/powershell"
+    }
+}

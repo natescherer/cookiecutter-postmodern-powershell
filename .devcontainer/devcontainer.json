@@ -1,0 +1,23 @@
+{
+  "name": "sre-devcontainer",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "vscode",
+  "features": {},
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.isort",
+        "ms-python.flake8",
+        "ms-python.black-formatter",
+        "streetsidesoftware.code-spell-checker",
+        "shyykoserhiy.git-autoconfig",
+        "eamodio.gitlens",
+        "tamasfe.even-better-toml",
+        "ms-vscode.powershell"
+      ]
+    }
+  }
+}
